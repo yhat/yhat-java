@@ -14,6 +14,7 @@ import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 
@@ -125,7 +126,36 @@ public class YhatClient {
      * @throws Exception 
      */
     private void authenticate() throws Exception {
-
+        String url = String.format("%s://%s/verify?username=%s&apikey=%s",
+                protocol, hostname, username, apikey);
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        HttpPost postRequest = new HttpPost(url);
+        postRequest.addHeader("Content-Type", "application/json");
+        HttpResponse response = httpclient.execute(postRequest);
+        int statusCode = response.getStatusLine().getStatusCode();
+        if (statusCode != HttpStatus.SC_OK) {
+            throw new Exception(String.format(
+                    "Response had bad status code: %d", statusCode));
+        }
+        String result = EntityUtils.toString(response.getEntity());
+        JSONObject rsp;
+        try {
+            // try to parse incoming data
+            Object obj = (new JSONParser()).parse(result);
+            assert (obj instanceof JSONObject);
+            rsp = (JSONObject) obj;
+        } catch (Exception e) {
+            throw new Exception(String.format(
+                    "Response from '%s' returned invalid JSON", url));
+        }
+        String errmsg = "Invalid username/apikey combination!";
+        if (!(rsp.get("success") instanceof String)) {
+            throw new Exception(errmsg);
+        }
+        String success = (String) rsp.get("success");
+        if (!success.equals("true")) {
+            throw new Exception(errmsg);
+        }
     }
     
     /**
