@@ -89,9 +89,9 @@ public class YhatClient {
      * @return
      * @throws Exception 
      */
-    public String PredictRaw(String jsonString, String modelname)
+    public String predictRaw(String jsonString, String modelname)
             throws Exception {
-        return PredictRaw(jsonString, modelname, username);
+        return predictRaw(jsonString, modelname, username);
     }
     
     /**
@@ -103,7 +103,7 @@ public class YhatClient {
      * @return
      * @throws Exception 
      */
-    public String PredictRaw(String jsonString, String modelname,
+    public String predictRaw(String jsonString, String modelname,
             String modelowner) throws Exception {
         String url = String.format("%s://%s/%s/models/%s/",
                 protocol, hostname, modelowner, modelname);
@@ -114,6 +114,7 @@ public class YhatClient {
                 userCredentials.getBytes()));
         postRequest.addHeader("Authorization", basicAuth);
         postRequest.addHeader("Content-Type", "application/json");
+        // Set model query data as body of request
         HttpEntity entity = new ByteArrayEntity(
                 jsonString.getBytes("UTF-8"));
         postRequest.setEntity(entity);

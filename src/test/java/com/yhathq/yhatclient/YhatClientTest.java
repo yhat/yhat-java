@@ -57,7 +57,7 @@ public class YhatClientTest {
     public void testPredictRaw() throws Exception {
         System.out.println("PredictRaw");
         String jsonString = "{\"name\": \"Eric\"}";
-        String result = yhat.PredictRaw(jsonString, modelname);
+        String result = yhat.predictRaw(jsonString, modelname);
         System.out.printf("Result: %s\n", result);
     }
 

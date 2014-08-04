@@ -50,7 +50,7 @@ public class SimpleJSONYhatClient extends YhatClient{
      * @throws Exception 
      */
     public JSONObject predict(JSONArray data, String modelname) throws Exception {
-        String result = this.PredictRaw(data.toJSONString(), modelname);
+        String result = this.predictRaw(data.toJSONString(), modelname);
         Object obj = parser.parse(result);
         if (!(obj instanceof JSONObject)) {
             throw new Exception("Could not parse incoming json");
@@ -62,7 +62,7 @@ public class SimpleJSONYhatClient extends YhatClient{
      * 
      */
     public JSONObject predict(JSONObject data, String modelname) throws Exception {
-        String result = this.PredictRaw(data.toJSONString(), modelname);
+        String result = this.predictRaw(data.toJSONString(), modelname);
         Object obj = parser.parse(result);
         if (!(obj instanceof JSONObject)) {
             throw new Exception("Could not parse incoming json");
