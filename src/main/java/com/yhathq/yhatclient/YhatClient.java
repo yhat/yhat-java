@@ -50,10 +50,10 @@ public class YhatClient {
     private final Protocol protocol;
 
     /**
-     * 
-     * @param username
-     * @param apikey
-     * @param hostname
+     * Construct and instance of the Yhat client.
+     * @param username Your ScienceOps username
+     * @param apikey Your ScienceOps apikey
+     * @param hostname The host name of your ScienceOps server 
      * @throws Exception 
      */
     public YhatClient(String username, String apikey, String hostname)
@@ -62,11 +62,11 @@ public class YhatClient {
     }
 
     /**
-     * 
-     * @param username
-     * @param apikey
-     * @param hostname
-     * @param protocol
+     * Construct and instance of the Yhat client.
+     * @param username Your ScienceOps username
+     * @param apikey Your ScienceOps apikey
+     * @param hostname The host name of your ScienceOps server 
+     * @param protocol Protocol to send requests with.
      * @throws Exception 
      */
     public YhatClient(String username, String apikey, String hostname,
@@ -82,16 +82,31 @@ public class YhatClient {
     }
     
     /**
-     * 
-     * @param jsonString
-     * @param modelname
+     * Invoke a Yhat model.
+     * Takes and returns raw strings rather than JSON objects.
+     * @param jsonString String escaped JSON data to send to model.
+     * @param modelname Name of model to query.
      * @return
      * @throws Exception 
      */
     public String PredictRaw(String jsonString, String modelname)
             throws Exception {
+        return PredictRaw(jsonString, modelname, username);
+    }
+    
+    /**
+     * Invoke a shared Yhat model.
+     * Takes and returns raw strings rather than JSON objects.
+     * @param jsonString String escaped JSON data to send to model.
+     * @param modelname Name of model to query.
+     * @param modelowner Owner of the shared model.
+     * @return
+     * @throws Exception 
+     */
+    public String PredictRaw(String jsonString, String modelname,
+            String modelowner) throws Exception {
         String url = String.format("%s://%s/%s/models/%s/",
-                protocol, hostname, username, modelname);
+                protocol, hostname, modelowner, modelname);
         CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpPost postRequest = new HttpPost(url);
         String userCredentials = username + ":" + apikey;
@@ -122,7 +137,7 @@ public class YhatClient {
     }
     
     /**
-     * 
+     * Check username and apikey validity.
      * @throws Exception 
      */
     private void authenticate() throws Exception {
@@ -159,7 +174,7 @@ public class YhatClient {
     }
     
     /**
-     * 
+     * Remove protocol prefix and trailing slash from a URL.
      * @param hostname
      * @param protocol
      * @return 
@@ -171,7 +186,7 @@ public class YhatClient {
     }
 
     /**
-     * 
+     * Get the Yhat apikey of this client.
      * @return 
      */
     public String getApikey() {
@@ -179,7 +194,7 @@ public class YhatClient {
     }
 
     /**
-     * 
+     * Get the Yhat hostname of this client.
      * @return 
      */
     public String getHostname() {
@@ -187,7 +202,7 @@ public class YhatClient {
     }
 
     /**
-     * 
+     * Get the Yhat protocol this client uses.
      * @return 
      */
     public Protocol getProtocol() {
@@ -195,7 +210,7 @@ public class YhatClient {
     }
 
     /**
-     * 
+     * Get the Yhat username of this client.
      * @return 
      */
     public String getUsername() {

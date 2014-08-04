@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="1.076" errors="0" skipped="0" tests="5" name="com.yhathq.yhatclient.YhatClientTest">
+<testsuite failures="0" time="1.034" errors="0" skipped="0" tests="5" name="com.yhathq.yhatclient.YhatClientTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/jre/lib"/>
@@ -62,9 +62,9 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.514" classname="com.yhathq.yhatclient.YhatClientTest" name="setUp"/>
-  <testcase time="0.229" classname="com.yhathq.yhatclient.YhatClientTest" name="testPredictRaw"/>
-  <testcase time="0.111" classname="com.yhathq.yhatclient.YhatClientTest" name="testGetApikey"/>
-  <testcase time="0.111" classname="com.yhathq.yhatclient.YhatClientTest" name="testGetProtocol"/>
-  <testcase time="0.111" classname="com.yhathq.yhatclient.YhatClientTest" name="testGetUsername"/>
+  <testcase time="0.489" classname="com.yhathq.yhatclient.YhatClientTest" name="setUp"/>
+  <testcase time="0.221" classname="com.yhathq.yhatclient.YhatClientTest" name="testPredictRaw"/>
+  <testcase time="0.11" classname="com.yhathq.yhatclient.YhatClientTest" name="testGetApikey"/>
+  <testcase time="0.11" classname="com.yhathq.yhatclient.YhatClientTest" name="testGetProtocol"/>
+  <testcase time="0.104" classname="com.yhathq.yhatclient.YhatClientTest" name="testGetUsername"/>
 </testsuite>
