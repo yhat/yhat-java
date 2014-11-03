@@ -29,7 +29,7 @@ public class YhatClientExample {
         String modelname = "HelloWorld";
         try {
             System.out.println("Making prediction through your model:");
-            YhatClient yhat = new YhatClient(username, apikey, modelname);
+            YhatClient yhat = new YhatClient(username, apikey, hostname);
             String rawdata = "{\"name\": \"Barbara\"}";
             System.out.println(yhat.predictRaw(rawdata, modelname));
         } catch (Exception e) {
